@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pet Owner List</title>
+
+<style>
+	
+	body {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr; 
+		gap: 20px;
+		background-color: #E6EBE0;
+	}
+	
+	form {
+		display: grid; 
+		align-items: center;
+		justify-content: center;
+	}
+
+	form fieldset {
+		display: grid; 
+		align-items: center;
+		justify-content: center;
+		width: 20%;
+		gap: 10px;
+	}
+	
+	h1 {
+		text-decoration: underline;
+	}
+	
+	.center {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px;
+		text-align:center;
+	}
+	
+	header {
+		grid-column: 1/4;
+		grid-row: 1/2;
+		text-align: center;
+	}
+	
+	.headerText {
+		width: 100%;
+	}
+	
+	.ownerForm {
+		background-color: #36C9C6;
+		color: #605856;
+		grid-column: 2/3;
+		grid-row: 2/3;
+	}
+	
+	.ownerForm fieldset {
+		border-color: #605856;
+	}
+	
+	.animalForm {
+		background-color: #ED6A5A;
+		color: #F4F1BB;
+		grid-column: 2/3;
+		grid-row: 3/4;
+	}
+	
+	.animalForm fieldset {
+		border-color: #F4F1BB;
+	}
+	
+	.fullList {
+		display: grid;
+		justify-content: center;
+		align-content: center;
+		color: #93A3B1;
+		background-color: #93A3B1;
+		grid-column: 2/3;
+		grid-row: 4/5;
+	}
+	
+	.fullList button {
+		width: 100px;
+		height: 100px;
+	}
+	
+	.fullList a {
+		text-decoration: none;
+		color: #93A3B1;
+	}
+</style>
+</head>
+<body>
+	<header>
+	<img class="headerText" src="javaHeaderText.png" alt="Furry Headline Text">
+	</header>
+	<form class="ownerForm" action="addOwnerServlet" method="post">
+		<fieldset>
+			<legend>Add An Owner: </legend>
+			
+			<div>
+				<label for="firstName">First Name: </label>
+				<input type="text" name="firstName" id="firstName">
+			</div>
+			<div>
+				<label for="lastName">Last Name: </label>
+				<input type="text" name="lastName" id="lastName">
+			</div>
+			
+			<div class="center">
+				<input type="submit" value="Add Owner">
+				<button><a href="viewOwnerEntriesServlet">View Owner List</a></button>
+			</div>
+		</fieldset>
+	</form>
+	<form class="animalForm" action="addAnimalServlet" method="post">
+		<fieldset>
+			<legend>Add An Animal: </legend>
+			
+			<div>
+				<label for="petName">Name: </label>
+				<input type="text" name="name" id="petName">
+			</div>
+			<div>
+				<label for="petType">Type: </label>
+				<input type="text" name="type" id="petType">
+			</div>
+			<div>
+				<label for="petAdopted">Adoption Date: </label>
+				<input type="date" name=adoptDate id="petAdopted">
+			</div>	
+			<div class="center">
+				<input type="submit" value="Add Animal">
+				<button><a href="viewAnimalEntriesServlet">View Animal List</a></button>
+			</div>
+		</fieldset>
+	</form>
+	<div class="fullList">
+		<button><a href="viewAllEntriesServlet">View Full List</a></button>
+	</div>
+</body>
+</html>
