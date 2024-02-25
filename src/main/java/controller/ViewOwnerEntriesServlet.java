@@ -18,28 +18,35 @@ public class ViewOwnerEntriesServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public ViewOwnerEntriesServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		OwnerHelper dao = new OwnerHelper();
+		
+		request.setAttribute("allOwners", dao.showAllOwners());
+		
+		String path ="/viewOwnerEntries.jsp";
+		
+		if(dao.showAllOwners().isEmpty()) {
+			path = "/index.html";
+		}
+		
+		getServletContext().getRequestDispatcher(path).forward(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		OwnerHelper dao = new OwnerHelper();
 		
 		request.setAttribute("allOwners", dao.showAllOwners());
 		
-		String path ="/viewAllEntries.jsp";
+		String path ="/viewOwnerEntries.jsp";
 		
 		if(dao.showAllOwners().isEmpty()) {
 			path = "/index.html";

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Animal;
+import model.Owner;
+
 /**
  * Servlet implementation class OwnerNavigationServlet
  */
@@ -35,7 +38,35 @@ public class OwnerNavigationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		OwnerHelper dao = new OwnerHelper();
+		String act = request.getParameter("doThisToItem");
+		
+		String path="/viewOwnerEntriesServlet";
+		
+		if(act.equals("delete")) {
+			try {
+				Integer tempId = Integer.parseInt(request.getParameter("id"));
+				Owner toDelete = dao.searchForOwnerById(tempId);
+				dao.deleteOwner(toDelete);
+			}catch(NumberFormatException e) {
+				System.out.println("Forgot to select an owner");
+			}
+			
+		}else if(act.equals("edit")) {
+			try {
+				Integer tempId = Integer.parseInt(request.getParameter("id"));
+				Owner toEdit = dao.searchForOwnerById(tempId);
+				request.setAttribute("toEdit", toEdit);
+				path="/editOwnerServlet.jsp";
+			}catch(NumberFormatException e) {
+				System.out.println("Forgot to select an owner");
+			}
+			
+		}else if(act.equals("add")) {
+			path="/index.html";
+		}
+		
+		getServletContext().getRequestDispatcher(path).forward(request,response);
 	}
 
 }
