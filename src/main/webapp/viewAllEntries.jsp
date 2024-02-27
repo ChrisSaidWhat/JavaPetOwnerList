@@ -110,6 +110,13 @@
 					<td>${currentEntry.firstName}</td>
 					<td>${currentEntry.lastName}</td>
 					<td>${currentEntry.userName}</td>
+					<c:forEach items="${currentEntry.animalsOwned}" var="currentAnimal">
+					<tr>
+						<td>${currentAnimal.name}</td>
+						<td>${currentAnimal.type}</td>
+						<td>${currentAnimal.adoptDate}</td>
+					</tr>
+				</c:forEach>
 				</tr>
 			</c:forEach>
 		</table>
@@ -117,25 +124,5 @@
 			type="submit" value="delete" name="doThisToItem"> <input
 			type="submit" value="add" name="doThisToItem">
 	</fieldset>
-	</form>
-	<form class="animalForm" method="post" action="animalNavigationServlet">
-	<fieldset>
-		<legend>Animal List: </legend>
-		<table>
-			<c:forEach items="${requestScope.animalEntries}" var="currentEntry">
-				<tr>
-					<td><input type="radio" name="id"
-						value="${currentEntry.id}"></td>
-					<td>${currentEntry.name}</td>
-					<td>${currentEntry.type}</td>
-					<td>${currentEntry.adoptDate}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<input type="submit" value="edit" name="doThisToItem"> <input
-			type="submit" value="delete" name="doThisToItem"> <input
-			type="submit" value="add" name="doThisToItem">
-	</fieldset>
-	</form>
 </body>
 </html>

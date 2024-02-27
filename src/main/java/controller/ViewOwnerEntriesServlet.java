@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Owner;
 
 /**
  * Servlet implementation class ViewOwnerEntriesServlet
@@ -26,14 +30,15 @@ public class ViewOwnerEntriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OwnerHelper dao = new OwnerHelper();
+		List<Owner> owners = dao.showAllOwners();
 		
-		request.setAttribute("allOwners", dao.showAllOwners());
+		request.setAttribute("allOwners", owners);
 		
 		String path ="/viewOwnerEntries.jsp";
+		System.out.println(request.getAttribute("allOwners"));
 		
-		if(dao.showAllOwners().isEmpty()) {
-			path = "/index.html";
-		}
+		if(owners.isEmpty()) { path = "/index.html"; }
+		 
 		
 		getServletContext().getRequestDispatcher(path).forward(request,response);
 	}
@@ -42,17 +47,7 @@ public class ViewOwnerEntriesServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		OwnerHelper dao = new OwnerHelper();
-		
-		request.setAttribute("allOwners", dao.showAllOwners());
-		
-		String path ="/viewOwnerEntries.jsp";
-		
-		if(dao.showAllOwners().isEmpty()) {
-			path = "/index.html";
-		}
-		
-		getServletContext().getRequestDispatcher(path).forward(request,response);
+		doGet(request, response);
 	}
 
 }

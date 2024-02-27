@@ -33,6 +33,11 @@ public class OwnerHelper {
     public List<Owner> showAllOwners() {
         EntityManager em = emfactory.createEntityManager();
         List<Owner> allOwners = em.createQuery("SELECT o FROM Owner o").getResultList();
+        System.out.println(allOwners.size());
+        for(Owner owner : allOwners ) {
+        	System.out.println(owner.getOwnerId());
+        	
+        }
         return allOwners;
     }
 

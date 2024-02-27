@@ -57,7 +57,7 @@ public class OwnerNavigationServlet extends HttpServlet {
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
 				Owner toEdit = dao.searchForOwnerById(tempId);
 				request.setAttribute("toEdit", toEdit);
-				path="/editOwnerServlet.jsp";
+				path="/editOwner.jsp";
 			}catch(NumberFormatException e) {
 				System.out.println("Forgot to select an owner");
 			}

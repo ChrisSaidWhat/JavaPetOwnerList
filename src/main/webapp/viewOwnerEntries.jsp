@@ -100,9 +100,9 @@
 <body>
 <form  class="ownerForm" method="post" action="ownerNavigationServlet">
 		<table>
-			<c:forEach items="${requestScope.ownerEntries}" var="currentEntry">
+			<c:forEach items="${requestScope.allOwners}" var="currentEntry">
 				<tr>
-					<td><input type="radio" name="id" value="${currentEntry.id}"></td>
+					<td><input type="radio" name="id" value="${currentEntry.ownerId}"></td>
 					<td>${currentEntry.firstName}</td>
 					<td>${currentEntry.lastName}</td>
 					<td>${currentEntry.userName}</td>

@@ -106,7 +106,7 @@
 		<label for="lastName">Last Name: </label>
 		<input type="text" id="lastName" name="lastName" value="${toEdit.lastName}">
 		
-		<input type="hidden" name="id" value="${toEdit.id}">
+		<input type="hidden" name="id" value="${toEdit.ownerId}">
 		<input type="submit" value="Save Changes">
 	</form>
 </body>

@@ -100,7 +100,7 @@
 <body>
 <form  class="animalForm" method="post" action="animalNavigationServlet">
 		<table>
-			<c:forEach items="${requestScope.animalEntries}" var="currentEntry">
+			<c:forEach items="${requestScope.allAnimals}" var="currentEntry">
 				<tr>
 					<td><input type="radio" name="id" value="${currentEntry.id}"></td>
 					<td>${currentEntry.name}</td>

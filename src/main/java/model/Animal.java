@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,8 @@ public class Animal {
 	private String type;
 	@Column(name="ADOPTION_DATE")
 	private LocalDate adoptDate;
-	@ManyToOne
-	@JoinColumn(name="OWNER_ID")		//	had ChatGPT analyze the code and teach the solution to this
+	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="OWNERID")		//	had ChatGPT analyze the code and teach the solution to this
 	private Owner owner;
 	
 	//	constructors
