@@ -39,11 +39,18 @@ public class Animal {
 		
 	}
 	
-	public Animal(String name, String type, int day, int month, int year) {
+	public Animal(String name, String type, String date) {
 		this.name = name;
 		this.type = type;
-		setAdoptDate(day, month, year);
+		this.adoptDate = convertStringToLocalDate(date);
 	}
+	
+	//	this is the previous implementation for the adoptDate which didn't account for String input from date picker
+//	public Animal(String name, String type, int day, int month, int year) {
+//		this.name = name;
+//		this.type = type;
+//		setAdoptDate(day, month, year);
+//	}
 	
 	//	getters and setters
 
@@ -74,10 +81,35 @@ public class Animal {
 	public LocalDate getAdoptDate() {
 		return adoptDate;
 	}
-
-	public void setAdoptDate(int day, int month, int year) {
-		LocalDate date = LocalDate.of(year, month, day);
-		this.adoptDate = date;
+	
+	public void setAdoptDate(LocalDate adoptDate) {
+		this.adoptDate = adoptDate;
+	}
+	
+	//	this is the previous implementation for the adoptDate which didn't account for String input from date picker
+//	public void setAdoptDate(int day, int month, int year) {
+//		LocalDate date = LocalDate.of(year, month, day);
+//		this.adoptDate = date;
+//	}
+	
+	//	helper methods
+	private LocalDate convertStringToLocalDate(String date) {
+		//	utilized ChatGPT to troubleshoot code and explain how pieces worked
+		String[] components = date.split("/");
+		int[] formattedDates = new int[components.length];
+		
+		for(int i = 0; i < components.length; i++) {
+			formattedDates[i] = Integer.parseInt(components[i]);
+		}
+		
+		int day = formattedDates[0];
+		int month = formattedDates[1];
+		int year = formattedDates[2];
+		
+		LocalDate adoptDate = LocalDate.of(year, month, day);
+		
+		return adoptDate;
+		
 	}
 	
 	
