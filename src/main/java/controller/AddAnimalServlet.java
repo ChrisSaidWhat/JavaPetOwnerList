@@ -29,39 +29,42 @@ public class AddAnimalServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+//	/**
+//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+//	 */
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String name = request.getParameter("petName");
-		String type = request.getParameter("petType");
+		String name = request.getParameter("name");
+		String type = request.getParameter("type");
+		String date = request.getParameter("adoptDate");
 		
-		String month = request.getParameter("month");
-		String day = request.getParameter("day");
-		String year = request.getParameter("year");
+		//	needed different implementation based on how the Animal model developed
 		
-		LocalDate date;
-		try {
-			date = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-		}catch (NumberFormatException ex){
-			date = LocalDate.now();
-		}
+//		String month = request.getParameter("month");
+//		String day = request.getParameter("day");
+//		String year = request.getParameter("year");
 		
+//		LocalDate date;
+//		try {
+//			date = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+//		}catch (NumberFormatException ex){
+//			date = LocalDate.now();
+//		}
 		
+		System.out.println(name);
+		System.out.println(type);
+		System.out.println(date);
 		
-		if (name.isEmpty() || type.isEmpty() || name == null || type == null) {
+		if (name == null || type == null || date == null || name.equals("") || type.equals("") || date.equals("")) {
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		} else {
-			Animal animal = new Animal(name,date, type);
+			Animal animal = new Animal(name,type,date);
 			AnimalHelper dao = new AnimalHelper();
 			dao.addAnimal(animal);
 

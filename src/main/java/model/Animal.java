@@ -95,16 +95,16 @@ public class Animal {
 	//	helper methods
 	private LocalDate convertStringToLocalDate(String date) {
 		//	utilized ChatGPT to troubleshoot code and explain how pieces worked
-		String[] components = date.split("/");
+		String[] components = date.split("-");
 		int[] formattedDates = new int[components.length];
 		
 		for(int i = 0; i < components.length; i++) {
 			formattedDates[i] = Integer.parseInt(components[i]);
 		}
 		
-		int day = formattedDates[0];
+		int year = formattedDates[0];
 		int month = formattedDates[1];
-		int year = formattedDates[2];
+		int day = formattedDates[2];
 		
 		LocalDate adoptDate = LocalDate.of(year, month, day);
 		
