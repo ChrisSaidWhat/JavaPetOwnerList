@@ -21,9 +21,11 @@ public class AnimalHelper {
     }
 
     static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JavaPetOwnerList");
-
+    OwnerHelper dao = new OwnerHelper();
+    
     public void addAnimal(Animal toAdd) {
         EntityManager em = emfactory.createEntityManager();
+        toAdd.setOwner(dao.searchForOwnerUsername(toAdd.getOwner().getUserName()).get(0));
         em.getTransaction().begin();
         em.persist(toAdd);
         em.getTransaction().commit();

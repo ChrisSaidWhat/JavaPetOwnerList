@@ -77,5 +77,7 @@ public class Owner {
 		this.userName = this.firstName + this.lastName;
 	}
 	
-	
+	public void setUserName(String username) {
+		this.userName = username;
+	}
 }
