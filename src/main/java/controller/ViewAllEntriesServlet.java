@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.persistence.internal.oxm.schema.model.List;
+
+import model.Owner;
+
 /**
  * Servlet implementation class ViewAllEntriesServlet
  */
@@ -27,9 +31,18 @@ public class ViewAllEntriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		OwnerHelper oh = new OwnerHelper();
+		
+		List<Owner> abc = oh.getLists();
+		request.setAttribute("allLists", abc);
+	
+		if(abc.isEmpty()) {
+			request.setAttribute("allLists", "");
+		}
+		
+		getServletContext().getRequestDispatcher("/viewAllEntries.jsp").forward(request, response);
 
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
