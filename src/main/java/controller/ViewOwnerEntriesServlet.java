@@ -35,7 +35,7 @@ public class ViewOwnerEntriesServlet extends HttpServlet {
 		request.setAttribute("allOwners", owners);
 		
 		String path ="/viewOwnerEntries.jsp";
-		System.out.println(request.getAttribute("allOwners"));
+//		System.out.println(request.getAttribute("allOwners"));
 		
 		if(owners.isEmpty()) { path = "/index.html"; }
 		 
