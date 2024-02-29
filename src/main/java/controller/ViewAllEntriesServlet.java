@@ -34,10 +34,10 @@ public class ViewAllEntriesServlet extends HttpServlet {
 		OwnerHelper dao = new OwnerHelper();
 		
 		List<Owner> abc = dao.showAllOwners();
-		request.setAttribute("allLists", abc);
+		request.setAttribute("ownerEntries", abc);
 	
 		if(abc.isEmpty()) {
-			request.setAttribute("allLists", "");
+			request.setAttribute("ownerEntries", "");
 		}
 		
 		getServletContext().getRequestDispatcher("/viewAllEntries.jsp").forward(request, response);

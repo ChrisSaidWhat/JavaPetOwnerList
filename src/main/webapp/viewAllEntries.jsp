@@ -106,7 +106,7 @@
 			<c:forEach items="${requestScope.ownerEntries}" var="currentEntry">
 				<tr>
 					<td><input type="radio" name="id"
-						value="${currentEntry.id}"></td>
+						value="${currentEntry.ownerId}"></td>
 					<td>${currentEntry.firstName}</td>
 					<td>${currentEntry.lastName}</td>
 					<td>${currentEntry.userName}</td>
@@ -124,5 +124,6 @@
 			type="submit" value="delete" name="doThisToItem"> <input
 			type="submit" value="add" name="doThisToItem">
 	</fieldset>
+	</form>
 </body>
 </html>
