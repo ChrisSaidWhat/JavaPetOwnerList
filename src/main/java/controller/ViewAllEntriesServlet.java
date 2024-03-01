@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.List;
 
+import model.Animal;
 import model.Owner;
 
 /**
@@ -32,12 +33,17 @@ public class ViewAllEntriesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		OwnerHelper dao = new OwnerHelper();
+		AnimalHelper dao2 = new AnimalHelper();
 		
 		List<Owner> abc = dao.showAllOwners();
+		List<Animal> abc2 = dao2.showAllAnimals();
+		
 		request.setAttribute("ownerEntries", abc);
+		request.setAttribute("animalEntries", abc2);
 	
-		if(abc.isEmpty()) {
+		if(abc.isEmpty() || abc2.isEmpty()) {
 			request.setAttribute("ownerEntries", "");
+			request.setAttribute("animalEntries", "");
 		}
 		
 		getServletContext().getRequestDispatcher("/viewAllEntries.jsp").forward(request, response);

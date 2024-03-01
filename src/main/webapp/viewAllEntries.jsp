@@ -125,5 +125,26 @@
 			type="submit" value="add" name="doThisToItem">
 	</fieldset>
 	</form>
+	
+	<form class="animalForm" method="post" action="animalNavigationServlet">
+		<fieldset>
+		<legend>Animal List: </legend>
+		<table>
+			<c:forEach items="${requestScope.animalEntries}" var="currentEntry">
+				<tr>
+					<td><input type="radio" name="id"
+						value="${currentEntry.id}"></td>
+					<td>${currentEntry.name}</td>
+					<td>${currentEntry.type}</td>
+					<td>${currentEntry.adoptDate}</td>
+					<td>${currentEntry.owner.getUserName()}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<input type="submit" value="edit" name="doThisToItem"> <input
+			type="submit" value="delete" name="doThisToItem"> <input
+			type="submit" value="add" name="doThisToItem">
+	</fieldset>
+	</form>
 </body>
 </html>
