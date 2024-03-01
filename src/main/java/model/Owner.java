@@ -80,4 +80,12 @@ public class Owner {
 	public void setUserName(String username) {
 		this.userName = username;
 	}
+
+	public List<Animal> getAnimalsOwned() {
+		return animalsOwned;
+	}
+
+	public void setAnimalsOwned(List<Animal> animalsOwned) {
+		this.animalsOwned = animalsOwned;
+	}
 }
