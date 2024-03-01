@@ -42,6 +42,7 @@ public class AddAnimalServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String type = request.getParameter("type");
+		String username = request.getParameter("userName");
 		String date = request.getParameter("adoptDate");
 		
 		//	needed different implementation based on how the Animal model developed
@@ -60,16 +61,16 @@ public class AddAnimalServlet extends HttpServlet {
 		System.out.println(name);
 		System.out.println(type);
 		System.out.println(date);
-		
-		if (name == null || type == null || date == null || name.equals("") || type.equals("") || date.equals("")) {
-			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
-		} else {
-			Animal animal = new Animal(name,type,date);
+//		
+//		if (name == null || type == null || date == null || name.equals("") || type.equals("") || date.equals("")) {
+//			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+//		} else {
+			Animal animal = new Animal(name,type, username,date);
 			AnimalHelper dao = new AnimalHelper();
 			dao.addAnimal(animal);
 
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
-		}
+//		}
 		
 	}
 

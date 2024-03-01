@@ -33,11 +33,11 @@ public class OwnerHelper {
     public List<Owner> showAllOwners() {
         EntityManager em = emfactory.createEntityManager();
         List<Owner> allOwners = em.createQuery("SELECT o FROM Owner o").getResultList();
-//        System.out.println(allOwners.size());
-//        for(Owner owner : allOwners ) {
-//        	System.out.println(owner.getOwnerId());
-//        	
-//        }
+        System.out.println(allOwners.size());
+        for(Owner owner : allOwners ) {
+        	System.out.println(owner.getOwnerId());
+        	
+        }
         return allOwners;
     }
 
@@ -92,6 +92,18 @@ public class OwnerHelper {
         em.getTransaction().begin();
         TypedQuery<Owner> typedQuery = em.createQuery("SELECT o FROM Owner o WHERE o.lastName = :selectedLast", Owner.class);
         typedQuery.setParameter("selectedLast", lastName);
+
+        List<Owner> foundOwners = typedQuery.getResultList();
+        em.close();
+
+        return foundOwners;
+    }
+    
+    public List<Owner> searchForOwnerUsername(String username) {
+        EntityManager em = emfactory.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Owner> typedQuery = em.createQuery("SELECT o FROM Owner o WHERE o.userName = :selectedUsername", Owner.class);
+        typedQuery.setParameter("selectedUsername", username);
 
         List<Owner> foundOwners = typedQuery.getResultList();
         em.close();

@@ -32,16 +32,17 @@ public class Animal {
 	private LocalDate adoptDate;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="OWNERID")		//	had ChatGPT analyze the code and teach the solution to this
-	private Owner owner;
+	private Owner owner = new Owner();
 	
 	//	constructors
 	public Animal() {
 		
 	}
 	
-	public Animal(String name, String type, String date) {
+	public Animal(String name, String type, String username ,String date) {
 		this.name = name;
 		this.type = type;
+		this.owner.setUserName(username);
 		this.adoptDate = convertStringToLocalDate(date);
 	}
 	
@@ -86,6 +87,13 @@ public class Animal {
 		this.adoptDate = adoptDate;
 	}
 	
+	public Owner getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
 	//	this is the previous implementation for the adoptDate which didn't account for String input from date picker
 //	public void setAdoptDate(int day, int month, int year) {
 //		LocalDate date = LocalDate.of(year, month, day);

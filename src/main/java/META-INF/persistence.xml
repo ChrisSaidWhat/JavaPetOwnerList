@@ -10,7 +10,7 @@
 			<property name="javax.persistence.jdbc.password" value="devkey123"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/petOwner"/>
 			<property name="exclude-unlisted-classes" value="false"/>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
 		</properties>
 	</persistence-unit>
 </persistence>
